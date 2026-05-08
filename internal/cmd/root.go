@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/joho/godotenv"
 	"github.com/spf13/cobra"
 )
 
@@ -15,6 +16,10 @@ It provides various commands to interact with GitHub's API and retrieve informat
 }
 
 func Execute() error {
+	if err := godotenv.Load(); err != nil {
+		fmt.Fprintln(os.Stderr, "Warning: No .env file found. Make sure to set the GITHUB_TOKEN environment variable.")
+	}
+
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)

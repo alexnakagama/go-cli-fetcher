@@ -9,16 +9,19 @@ import (
 
 var authCmd = &cobra.Command{
 	Use:   "auth",
-	Short: "Authenticate with GitHub",
-	Long:  `Authenticate with GitHub to access private repositories and perform actions on behalf of the user.`,
+	Short: "Configure your GitHub token",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Authenticating with GitHub...")
-		fmt.Print("Type your GitHub token: ")
+		fmt.Print("Enter your GitHub token: ")
 		var token string
 		fmt.Scanln(&token)
 
-		os.Setenv("GITHUB_TOKEN", token)
-		fmt.Println("Authentication successful! Your token has been set as an environment variable.")
+		envContent := fmt.Sprintf("GITHUB_TOKEN=%s\n", token)
+		if err := os.WriteFile(".env", []byte(envContent), 0600); err != nil {
+			fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+			return
+		}
+
+		fmt.Println("Token saved to .env file. You're ready to go!")
 	},
 }
 
