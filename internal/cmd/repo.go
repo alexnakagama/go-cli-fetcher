@@ -14,6 +14,19 @@ var repoCmd = &cobra.Command{
 	},
 }
 
+var repoDetailCmd = &cobra.Command{
+	Use:   "detail [owner] [repo]",
+	Short: "Fetch detailed information about a specific GitHub repository",
+	Long:  `Fetch detailed information about a specific GitHub repository by providing the owner's username and the repository name.`,
+	Args:  cobra.ExactArgs(2),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		owner := args[0]
+		repoName := args[1]
+		return github.GetRepo(owner, repoName)
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(repoCmd)
+	repoCmd.AddCommand(repoDetailCmd)
 }
