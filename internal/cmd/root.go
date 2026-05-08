@@ -21,3 +21,12 @@ func Execute() error {
 	}
 	return nil
 }
+
+func init() {
+	rootCmd.PersistentPreRun = func(cmd *cobra.Command, args []string) {
+		if os.Getenv("GITHUB_TOKEN") == "" {
+			fmt.Fprintln(os.Stderr, "Error: GITHUB_TOKEN environment variable is not set. Please authenticate using the 'auth' command.")
+			os.Exit(1)
+		}
+	}
+}
