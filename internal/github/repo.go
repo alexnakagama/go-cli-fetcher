@@ -3,13 +3,20 @@ package github
 import (
 	"context"
 	"fmt"
+
+	"github.com/google/go-github/v86/github"
 )
 
-func ListRepos() error {
+func createClient() (*github.Client, error) {
 	client, err := NewClient()
 	if err != nil {
-		return err
+		return nil, err
 	}
+	return client, nil
+}
+
+func ListRepos() error {
+	client, err := createClient()
 
 	repos, _, err := client.Repositories.ListByAuthenticatedUser(context.Background(), nil)
 	if err != nil {
@@ -23,10 +30,7 @@ func ListRepos() error {
 }
 
 func GetRepo(owner, repoName string) error {
-	client, err := NewClient()
-	if err != nil {
-		return err
-	}
+	client, err := createClient()
 
 	repo, _, err := client.Repositories.Get(context.Background(), owner, repoName)
 	if err != nil {
@@ -35,5 +39,20 @@ func GetRepo(owner, repoName string) error {
 
 	fmt.Printf("Name: %s\nDescription: %s\nStars: %d\nForks: %d\nURL: %s\n",
 		*repo.Name, *repo.Description, *repo.StargazersCount, *repo.ForksCount, *repo.HTMLURL)
+	return nil
+}
+
+func SearchUserInfo(username string) error {
+	client, err := createClient()
+
+	user, _, err := client.Users.Get(context.Background(), username)
+	if err != nil {
+		fmt.Printf("Error fetching user: %v\n", err)
+	}
+
+	fmt.Printf("Username: %s\n", *user.Login)
+	fmt.Printf("Name: %s\n", *user.Name)
+	fmt.Printf("Public repositories: %d\n", *user.PublicRepos)
+
 	return nil
 }
