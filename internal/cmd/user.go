@@ -6,7 +6,7 @@ import (
 )
 
 var userGetInfoCmd = &cobra.Command{
-	Use:   "user",
+	Use:   "user [username]",
 	Short: "Fetch information of a github user",
 	Long:  `Fetch detailed information about a GitHub user, including its name, description, followers/following, and more.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
