@@ -3,17 +3,7 @@ package github
 import (
 	"context"
 	"fmt"
-
-	"github.com/google/go-github/v86/github"
 )
-
-func createClient() (*github.Client, error) {
-	client, err := NewClient()
-	if err != nil {
-		return nil, err
-	}
-	return client, nil
-}
 
 func ListRepos() error {
 	client, err := createClient()

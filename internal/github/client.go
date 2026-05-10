@@ -19,3 +19,11 @@ func NewClient() (*github.Client, error) {
 	tc := oauth2.NewClient(context.Background(), ts)
 	return github.NewClient(tc), nil
 }
+
+func createClient() (*github.Client, error) {
+	client, err := NewClient()
+	if err != nil {
+		return nil, err
+	}
+	return client, nil
+}
