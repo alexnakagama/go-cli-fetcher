@@ -20,6 +20,9 @@ func SearchUserInfo(username string) error {
 	fmt.Printf("Following: %d\n", *user.Following)
 	fmt.Printf("Location: %s\n", *user.Location)
 	fmt.Printf("Bio: %s\n", *user.Bio)
+	fmt.Printf("Created at: %s\n", *user.CreatedAt)
+	fmt.Printf("Email: %s\n", *user.Email)
+	fmt.Printf("Url: %s\n", *user.URL)
 
 	return nil
 }
