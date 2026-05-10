@@ -53,6 +53,8 @@ func SearchUserInfo(username string) error {
 	fmt.Printf("Username: %s\n", *user.Login)
 	fmt.Printf("Name: %s\n", *user.Name)
 	fmt.Printf("Public repositories: %d\n", *user.PublicRepos)
+	fmt.Printf("Followers: %d\n", *user.Followers)
+	fmt.Printf("Following: %d\n", *user.Following)
 
 	return nil
 }
