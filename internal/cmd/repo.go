@@ -6,9 +6,13 @@ import (
 )
 
 var repoCmd = &cobra.Command{
+	Use:   "repo",
+	Short: "Manage GitHub repositories",
+	Long:  `Perform operations on GitHub repositories such as listing, creating, deleting, and getting details.`,
+}
+var repoListCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List information of the authenticated user repositories",
-	Long:  `Fetch detailed information about a GitHub repository, including its name, description, stars, forks, and more.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return github.ListRepos()
 	},
@@ -39,7 +43,7 @@ var repoCreateCmd = &cobra.Command{
 }
 
 var repoDeleteCmd = &cobra.Command{
-	Use:   "create [owner] [repoName]",
+	Use:   "delete [owner] [repoName]",
 	Short: "Delete a repository of the authenticated user",
 	Long:  `Delete a repository of the authenticated user, command is 'delete [owner] [repoName]'`,
 	Args:  cobra.ExactArgs(2),
@@ -51,7 +55,7 @@ var repoDeleteCmd = &cobra.Command{
 }
 
 var repoListBranchesCmd = &cobra.Command{
-	Use:   "list branch [owner] [repoName]",
+	Use:   "list-branches [owner] [repoName]",
 	Short: "List a repository branch",
 	Long:  `List a repository branch, command is 'list branch [owner] [repoName]'`,
 	Args:  cobra.ExactArgs(2),
@@ -64,7 +68,9 @@ var repoListBranchesCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(repoCmd)
-	rootCmd.AddCommand(repoDetailCmd)
-	rootCmd.AddCommand(repoCreateCmd)
-	rootCmd.AddCommand(repoDeleteCmd)
+	repoCmd.AddCommand(repoListCmd)
+	repoCmd.AddCommand(repoDetailCmd)
+	repoCmd.AddCommand(repoCreateCmd)
+	repoCmd.AddCommand(repoDeleteCmd)
+	repoCmd.AddCommand(repoListBranchesCmd)
 }
