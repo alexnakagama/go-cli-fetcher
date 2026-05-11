@@ -54,4 +54,5 @@ func init() {
 	rootCmd.AddCommand(repoCmd)
 	rootCmd.AddCommand(repoDetailCmd)
 	rootCmd.AddCommand(repoCreateCmd)
+	rootCmd.AddCommand(repoDeleteCmd)
 }
