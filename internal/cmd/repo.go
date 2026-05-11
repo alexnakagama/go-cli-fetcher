@@ -38,6 +38,18 @@ var repoCreateCmd = &cobra.Command{
 	},
 }
 
+var repoDeleteCmd = &cobra.Command{
+	Use:   "create [owner] [repoName]",
+	Short: "Delete a repository of the authenticated user",
+	Long:  `Delete a repository of the authenticated user, command is 'delete [owner] [repoName]'`,
+	Args:  cobra.ExactArgs(2),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		owner := args[0]
+		repoName := args[1]
+		return github.DeleteRepo(owner, repoName)
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(repoCmd)
 	rootCmd.AddCommand(repoDetailCmd)
