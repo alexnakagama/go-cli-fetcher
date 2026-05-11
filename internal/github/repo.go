@@ -81,7 +81,11 @@ func ListCommits(owner string, repoName string) error {
 
 	for _, commit := range commits {
 		if commit.Author != nil && commit.Author.Login != nil {
-			fmt.Println(*commit.Author.Login)
+			fmt.Printf("SHA: %s\n", *commit.SHA)
+			fmt.Printf("Author: %s\n", *commit.Author.Login)
+			fmt.Printf("Message: %s\n", *commit.Commit.Message)
+			fmt.Printf("Date: %s\n", *commit.Commit.Author.Date)
+			fmt.Println("")
 		} else {
 			fmt.Println("No author info")
 		}
