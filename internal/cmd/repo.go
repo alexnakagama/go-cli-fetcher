@@ -26,6 +26,18 @@ var repoDetailCmd = &cobra.Command{
 	},
 }
 
+var repoCreateCmd = &cobra.Command{
+	Use:   "create [owner] [repoName]",
+	Short: "Create a repository of the authenticated user",
+	Long:  "Create a repository of the authenticated user, command is 'create [owner] [repoName]'",
+	Args:  cobra.ExactArgs(2),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		owner := args[0]
+		repoName := args[1]
+		return github.CreateRepo(owner, repoName)
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(repoCmd)
 	repoCmd.AddCommand(repoDetailCmd)
