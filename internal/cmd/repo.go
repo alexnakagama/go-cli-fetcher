@@ -66,6 +66,17 @@ var repoListBranchesCmd = &cobra.Command{
 	},
 }
 
+var repoListCommitsCmd = &cobra.Command{
+	Use:   "list-commits [owner] [repoName]",
+	Short: "List commits of a repository",
+	Args:  cobra.ExactArgs(2),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		owner := args[0]
+		repoName := args[1]
+		return github.ListCommits(owner, repoName)
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(repoCmd)
 	repoCmd.AddCommand(repoListCmd)
@@ -73,4 +84,5 @@ func init() {
 	repoCmd.AddCommand(repoCreateCmd)
 	repoCmd.AddCommand(repoDeleteCmd)
 	repoCmd.AddCommand(repoListBranchesCmd)
+	repoCmd.AddCommand(repoListCommitsCmd)
 }
