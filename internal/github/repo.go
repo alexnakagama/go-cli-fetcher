@@ -70,3 +70,17 @@ func ListBranches(owner string, repoName string) error {
 	}
 	return nil
 }
+
+func ListCommits(owner string, repoName string) error {
+	client, err := createClient()
+
+	commits, _, err := client.Repositories.ListCommits(context.Background(), owner, repoName, nil)
+	if err != nil {
+		return err
+	}
+
+	for _, commit := range commits {
+		fmt.Println(*commit.Author)
+	}
+	return nil
+}
