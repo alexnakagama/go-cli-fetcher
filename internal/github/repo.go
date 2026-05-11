@@ -56,3 +56,17 @@ func DeleteRepo(owner string, repoName string) error {
 
 	return nil
 }
+
+func ListBranches(owner string, repoName string) error {
+	client, err := createClient()
+
+	branches, _, err := client.Repositories.ListBranches(context.Background(), owner, repoName, nil)
+	if err != nil {
+		return err
+	}
+
+	for _, branch := range branches {
+		fmt.Println(*branch.Name)
+	}
+	return nil
+}
