@@ -6,8 +6,8 @@ import (
 )
 
 var repoCmd = &cobra.Command{
-	Use:   "repo",
-	Short: "Fetch information about a GitHub repository",
+	Use:   "list",
+	Short: "List information of the authenticated user repositories",
 	Long:  `Fetch detailed information about a GitHub repository, including its name, description, stars, forks, and more.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return github.ListRepos()
