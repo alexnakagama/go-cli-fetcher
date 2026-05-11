@@ -50,6 +50,18 @@ var repoDeleteCmd = &cobra.Command{
 	},
 }
 
+var repoListBranchesCmd = &cobra.Command{
+	Use:   "list branch [owner] [repoName]",
+	Short: "List a repository branch",
+	Long:  `List a repository branch, command is 'list branch [owner] [repoName]'`,
+	Args:  cobra.ExactArgs(2),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		owner := args[0]
+		repoName := args[1]
+		return github.ListBranches(owner, repoName)
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(repoCmd)
 	rootCmd.AddCommand(repoDetailCmd)
