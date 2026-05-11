@@ -45,3 +45,14 @@ func CreateRepo(owner string, repoName string) error {
 
 	return nil
 }
+
+func DeleteRepo(owner string, repoName string) error {
+	client, err := createClient()
+
+	_, err = client.Repositories.Delete(context.Background(), owner, repoName)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
