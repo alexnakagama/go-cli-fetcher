@@ -44,7 +44,7 @@ func SearchUserEmail(username string) error {
 
 	user, _, err := client.Users.Get(context.Background(), username)
 	if err != nil {
-		fmt.Printf("Error fetching the email: %v", err)
+		fmt.Printf("Error fetching user: %v", err)
 	}
 
 	fmt.Printf("Email: %s", *user.Email)
@@ -56,9 +56,21 @@ func SearchUserCreate(username string) error {
 
 	user, _, err := client.Users.Get(context.Background(), username)
 	if err != nil {
-		fmt.Printf("Error fetching creation date: %v", err)
+		fmt.Printf("Error fetching user: %v", err)
 	}
 
 	fmt.Printf("Created at: %s", *user.CreatedAt)
+	return nil
+}
+
+func SearchPublicRepos(username string) error {
+	client, err := createClient()
+
+	user, _, err := client.Users.Get(context.Background(), username)
+	if err != nil {
+		fmt.Printf("Error fetching user: %v", err)
+	}
+
+	fmt.Printf("Public repositories: %s", *user.PublicRepos)
 	return nil
 }
