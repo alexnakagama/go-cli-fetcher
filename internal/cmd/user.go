@@ -32,6 +32,16 @@ var userGetUrlCmd = &cobra.Command{
 	},
 }
 
+var userGetEmailCmd = &cobra.Command{
+	Use:   "email [username]",
+	Short: "Fetch email from a github user",
+	Args:  cobra.ExactArgs(1),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		username := args[0]
+		return github.SearchUserEmail(username)
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(userCmd)
 	userCmd.AddCommand(userGetInfoCmd)
