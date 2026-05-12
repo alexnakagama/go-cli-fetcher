@@ -30,11 +30,11 @@ func SearchUserInfo(username string) error {
 func SearchUserUrl(username string) error {
 	client, err := createClient()
 
-	url, _, err := client.Users.Get(context.Background(), username)
+	user, _, err := client.Users.Get(context.Background(), username)
 	if err != nil {
 		fmt.Printf("Error fetching the url: %v", err)
 	}
 
-	fmt.Printf("URL: %s", *url.URL)
+	fmt.Printf("URL: %s", *user.URL)
 	return nil
 }
