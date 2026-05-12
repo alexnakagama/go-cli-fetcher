@@ -46,4 +46,5 @@ func init() {
 	rootCmd.AddCommand(userCmd)
 	userCmd.AddCommand(userGetInfoCmd)
 	userCmd.AddCommand(userGetUrlCmd)
+	userCmd.AddCommand(userGetEmailCmd)
 }
