@@ -5,8 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var userCmd = &cobra.Command{
+	Use:   "user",
+	Short: "Manage GitHub user",
+	Long:  `Perform operations on GitHub user such as listing, searching, and getting details.`,
+}
+
 var userGetInfoCmd = &cobra.Command{
-	Use:   "user [username]",
+	Use:   "detail [username]",
 	Short: "Fetch information of a github user",
 	Long:  `Fetch detailed information about a GitHub user, including its name, description, followers/following, and more.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -16,5 +22,6 @@ var userGetInfoCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(userGetInfoCmd)
+	rootCmd.AddCommand(userCmd)
+	userCmd.AddCommand(userGetInfoCmd)
 }
