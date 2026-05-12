@@ -35,4 +35,5 @@ var userGetUrlCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(userCmd)
 	userCmd.AddCommand(userGetInfoCmd)
+	userCmd.AddCommand(userGetUrlCmd)
 }
