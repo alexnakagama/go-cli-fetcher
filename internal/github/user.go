@@ -50,3 +50,15 @@ func SearchUserEmail(username string) error {
 	fmt.Printf("Email: %s", *user.Email)
 	return nil
 }
+
+func SearchUserCreate(username string) error {
+	client, err := createClient()
+
+	user, _, err := client.Users.Get(context.Background(), username)
+	if err != nil {
+		fmt.Printf("Error fetching creation date: %v", err)
+	}
+
+	fmt.Printf("Created at: %s", *user.CreatedAt)
+	return nil
+}
