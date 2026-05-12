@@ -38,3 +38,15 @@ func SearchUserUrl(username string) error {
 	fmt.Printf("URL: %s", *user.URL)
 	return nil
 }
+
+func SearchUserEmail(username string) error {
+	client, err := createClient()
+
+	user, _, err := client.Users.Get(context.Background(), username)
+	if err != nil {
+		fmt.Printf("Error fetching the email: %v", err)
+	}
+
+	fmt.Printf("Email: %s", *user.Email)
+	return nil
+}
