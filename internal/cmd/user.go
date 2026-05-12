@@ -52,10 +52,21 @@ var userGetCreationCmd = &cobra.Command{
 	},
 }
 
+var userGetPublicRepoCmd = &cobra.Command{
+	Use:   "public-repo [username]",
+	Short: "Fetch the public repositories of the user",
+	Args:  cobra.ExactArgs(1),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		username := args[0]
+		return github.SearchPublicRepos(username)
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(userCmd)
 	userCmd.AddCommand(userGetInfoCmd)
 	userCmd.AddCommand(userGetUrlCmd)
 	userCmd.AddCommand(userGetEmailCmd)
 	userCmd.AddCommand(userGetCreationCmd)
+	userCmd.AddCommand(userGetPublicRepoCmd)
 }

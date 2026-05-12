@@ -71,6 +71,6 @@ func SearchPublicRepos(username string) error {
 		fmt.Printf("Error fetching user: %v", err)
 	}
 
-	fmt.Printf("Public repositories: %s", *user.PublicRepos)
+	fmt.Printf("Number of public repositories: %d", *user.PublicRepos)
 	return nil
 }
