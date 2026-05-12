@@ -42,6 +42,16 @@ var userGetEmailCmd = &cobra.Command{
 	},
 }
 
+var userGetCreationCmd = &cobra.Command{
+	Use:   "created-at [username]",
+	Short: "Fetch creation date of the github user",
+	Args:  cobra.ExactArgs(1),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		username := args[0]
+		return github.SearchUserCreate(username)
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(userCmd)
 	userCmd.AddCommand(userGetInfoCmd)
