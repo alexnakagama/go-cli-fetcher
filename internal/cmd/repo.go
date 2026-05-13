@@ -33,7 +33,6 @@ var repoDetailCmd = &cobra.Command{
 var repoCreateCmd = &cobra.Command{
 	Use:   "create [owner] [repoName]",
 	Short: "Create a repository of the authenticated user",
-	Long:  `Create a repository of the authenticated user, command is 'create [owner] [repoName]'`,
 	Args:  cobra.ExactArgs(2),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		owner := args[0]
@@ -45,7 +44,6 @@ var repoCreateCmd = &cobra.Command{
 var repoDeleteCmd = &cobra.Command{
 	Use:   "delete [owner] [repoName]",
 	Short: "Delete a repository of the authenticated user",
-	Long:  `Delete a repository of the authenticated user, command is 'delete [owner] [repoName]'`,
 	Args:  cobra.ExactArgs(2),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		owner := args[0]
@@ -57,7 +55,6 @@ var repoDeleteCmd = &cobra.Command{
 var repoListBranchesCmd = &cobra.Command{
 	Use:   "list-branches [owner] [repoName]",
 	Short: "List a repository branch",
-	Long:  `List a repository branch, command is 'list branch [owner] [repoName]'`,
 	Args:  cobra.ExactArgs(2),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		owner := args[0]
