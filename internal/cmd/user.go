@@ -74,7 +74,7 @@ var userGetLocationCmd = &cobra.Command{
 
 var userGetFollowingCmd = &cobra.Command{
 	Use:   "following [username]",
-	Short: "Fetch user following and their url",
+	Short: "Fetch user following",
 	Args:  cobra.ExactArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		username := args[0]
@@ -90,4 +90,5 @@ func init() {
 	userCmd.AddCommand(userGetCreationCmd)
 	userCmd.AddCommand(userGetPublicRepoCmd)
 	userCmd.AddCommand(userGetLocationCmd)
+	userCmd.AddCommand(userGetFollowingCmd)
 }

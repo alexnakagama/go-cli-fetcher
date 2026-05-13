@@ -96,6 +96,5 @@ func SearchUserFollowing(username string) error {
 	}
 
 	fmt.Printf("Following count: %d\n", *user.Following)
-	fmt.Printf("Following: %s", *user.FollowingURL)
 	return nil
 }
