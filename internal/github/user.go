@@ -3,14 +3,28 @@ package github
 import (
 	"context"
 	"fmt"
+
+	"github.com/google/go-github/v86/github"
 )
 
-func SearchUserInfo(username string) error {
+func getUser(username string) (*github.User, error) {
 	client, err := createClient()
+	if err != nil {
+		return nil, err
+	}
 
 	user, _, err := client.Users.Get(context.Background(), username)
 	if err != nil {
-		fmt.Printf("Error fetching user: %v\n", err)
+		return nil, fmt.Errorf("Error fetching user: %v", err)
+	}
+
+	return user, nil
+}
+
+func SearchUserInfo(username string) error {
+	user, err := getUser(username)
+	if err != nil {
+		return err
 	}
 
 	fmt.Printf("Username: %s\n", *user.Login)
