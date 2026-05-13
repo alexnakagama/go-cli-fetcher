@@ -74,3 +74,15 @@ func SearchPublicRepos(username string) error {
 	fmt.Printf("Number of public repositories: %d", *user.PublicRepos)
 	return nil
 }
+
+func SearchUserLocation(username string) error {
+	client, err := createClient()
+
+	user, _, err := client.Users.Get(context.Background(), username)
+	if err != nil {
+		fmt.Printf("Error fetching user: %v", err)
+	}
+
+	fmt.Printf("Location: %s", *user.Location)
+	return nil
+}
