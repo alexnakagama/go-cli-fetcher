@@ -86,3 +86,16 @@ func SearchUserLocation(username string) error {
 	fmt.Printf("Location: %s", *user.Location)
 	return nil
 }
+
+func SearchUserFollowing(username string) error {
+	client, err := createClient()
+
+	user, _, err := client.Users.Get(context.Background(), username)
+	if err != nil {
+		fmt.Printf("Error fetching user: %v", err)
+	}
+
+	fmt.Printf("Following count: %d\n", *user.Following)
+	fmt.Printf("Following: %s", *user.FollowingURL)
+	return nil
+}
