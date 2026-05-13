@@ -90,11 +90,15 @@ func SearchUserLocation(username string) error {
 func SearchUserFollowing(username string) error {
 	client, err := createClient()
 
-	user, _, err := client.Users.Get(context.Background(), username)
+	listUser, _, err := client.Users.ListFollowing(context.Background(), username, nil)
 	if err != nil {
 		fmt.Printf("Error fetching user: %v", err)
 	}
 
-	fmt.Printf("Following count: %d\n", *user.Following)
+	fmt.Printf("Following:\n")
+	for _, user := range listUser {
+		fmt.Printf("%s: %s\n", *user.Login, *user.HTMLURL)
+	}
+
 	return nil
 }
