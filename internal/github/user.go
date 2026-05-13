@@ -42,11 +42,9 @@ func SearchUserInfo(username string) error {
 }
 
 func SearchUserUrl(username string) error {
-	client, err := createClient()
-
-	user, _, err := client.Users.Get(context.Background(), username)
+	user, err := getUser(username)
 	if err != nil {
-		fmt.Printf("Error fetching the url: %v", err)
+		return err
 	}
 
 	fmt.Printf("URL: %s", *user.URL)
@@ -54,11 +52,9 @@ func SearchUserUrl(username string) error {
 }
 
 func SearchUserEmail(username string) error {
-	client, err := createClient()
-
-	user, _, err := client.Users.Get(context.Background(), username)
+	user, err := getUser(username)
 	if err != nil {
-		fmt.Printf("Error fetching user: %v", err)
+		return err
 	}
 
 	fmt.Printf("Email: %s", *user.Email)
@@ -66,11 +62,9 @@ func SearchUserEmail(username string) error {
 }
 
 func SearchUserCreate(username string) error {
-	client, err := createClient()
-
-	user, _, err := client.Users.Get(context.Background(), username)
+	user, err := getUser(username)
 	if err != nil {
-		fmt.Printf("Error fetching user: %v", err)
+		return err
 	}
 
 	fmt.Printf("Created at: %s", *user.CreatedAt)
@@ -78,11 +72,9 @@ func SearchUserCreate(username string) error {
 }
 
 func SearchPublicRepos(username string) error {
-	client, err := createClient()
-
-	user, _, err := client.Users.Get(context.Background(), username)
+	user, err := getUser(username)
 	if err != nil {
-		fmt.Printf("Error fetching user: %v", err)
+		return err
 	}
 
 	fmt.Printf("Number of public repositories: %d", *user.PublicRepos)
@@ -90,11 +82,9 @@ func SearchPublicRepos(username string) error {
 }
 
 func SearchUserLocation(username string) error {
-	client, err := createClient()
-
-	user, _, err := client.Users.Get(context.Background(), username)
+	user, err := getUser(username)
 	if err != nil {
-		fmt.Printf("Error fetching user: %v", err)
+		return err
 	}
 
 	fmt.Printf("Location: %s", *user.Location)
