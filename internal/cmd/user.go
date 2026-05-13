@@ -79,4 +79,5 @@ func init() {
 	userCmd.AddCommand(userGetEmailCmd)
 	userCmd.AddCommand(userGetCreationCmd)
 	userCmd.AddCommand(userGetPublicRepoCmd)
+	userCmd.AddCommand(userGetLocationCmd)
 }
