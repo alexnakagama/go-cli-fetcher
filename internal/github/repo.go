@@ -94,3 +94,19 @@ func ListCommits(owner string, repoName string) error {
 	}
 	return nil
 }
+
+func SearchRepoStars(owner string, repoName string) error {
+	client, err := createClient()
+
+	repos, _, err := client.Repositories.ListByAuthenticatedUser(context.Background(), nil)
+	if err != nil {
+		return err
+	}
+
+	for _, repo := range repos {
+		fmt.Printf("Stars count: %d", *repo.StargazersCount)
+		fmt.Printf("URL: %s", *repo.StargazersURL)
+	}
+
+	return nil
+}
