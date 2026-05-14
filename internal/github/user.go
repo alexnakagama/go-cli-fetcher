@@ -106,3 +106,19 @@ func SearchUserFollowing(username string) error {
 
 	return nil
 }
+
+func SearchUserFollowers(username string) error {
+	client, err := createClient()
+
+	listUser, _, err := client.Users.ListFollowers(context.Background(), username, nil)
+	if err != nil {
+		fmt.Printf("Error fetching user: %v", err)
+	}
+
+	fmt.Printf("Followers:\n")
+	for _, user := range listUser {
+		fmt.Printf("%s: %s\n", *user.Login, *user.FollowersURL)
+	}
+
+	return nil
+}
