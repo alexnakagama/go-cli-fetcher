@@ -101,4 +101,5 @@ func init() {
 	userCmd.AddCommand(userGetPublicRepoCmd)
 	userCmd.AddCommand(userGetLocationCmd)
 	userCmd.AddCommand(userGetFollowingCmd)
+	userCmd.AddCommand(userGetFollowersCmd)
 }
