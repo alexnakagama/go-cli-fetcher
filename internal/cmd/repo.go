@@ -85,6 +85,19 @@ var repoSearchStarsCmd = &cobra.Command{
 	},
 }
 
+var repoCreateIssue = &cobra.Command{
+	Use:   "issue [owner] [repoName] [title] [body]",
+	Short: "Create an issue in a repository",
+	Args:  cobra.ExactArgs(4),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		owner := args[0]
+		repoName := args[1]
+		title := args[2]
+		body := args[3]
+		return github.CreateIssue(owner, repoName, title, body)
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(repoCmd)
 	repoCmd.AddCommand(repoListCmd)
