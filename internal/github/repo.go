@@ -110,3 +110,19 @@ func SearchRepoStars(owner string, repoName string) error {
 
 	return nil
 }
+
+func CreateIssue(owner, repoName, title, body string) error {
+	client, err := createClient()
+
+	issueRequest := &github.IssueRequest{
+		Title: github.Ptr(title),
+		Body:  github.Ptr(body),
+	}
+
+	_, _, err = client.Issues.Create(context.Background(), owner, repoName, issueRequest)
+	if err != nil {
+		fmt.Printf("Error fetching the repository: %v", err)
+	}
+
+	return nil
+}
