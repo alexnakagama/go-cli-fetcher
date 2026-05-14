@@ -93,4 +93,5 @@ func init() {
 	repoCmd.AddCommand(repoDeleteCmd)
 	repoCmd.AddCommand(repoListBranchesCmd)
 	repoCmd.AddCommand(repoListCommitsCmd)
+	repoCmd.AddCommand(repoSearchStarsCmd)
 }
