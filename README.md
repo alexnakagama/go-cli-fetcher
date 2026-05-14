@@ -1,86 +1,77 @@
 # go-cli-fetcher
 
-## Overview
+## Take Control of GitHub from Your Terminal
 
-go-cli-fetcher is a command-line tool written in Go for interacting with GitHub repositories. It allows you to list, create, delete, and get details about repositories, as well as list branches and commits, all from your terminal.
+go-cli-fetcher is a powerful, extensible command-line interface for developers who want to interact with GitHub efficiently—no browser required. Built in Go, it brings the most common repository, issue, and user operations to your fingertips, making automation and scripting seamless for power users and teams.
 
-## Features
-- List repositories of the authenticated user
-- Get detailed information about a specific repository
-- Create and delete repositories
-- List branches of a repository
-- List commits of a repository (with SHA, author, message, date, etc.)
-- Configure and store your GitHub token securely
+## Why use go-cli-fetcher?
+- **Speed:** Instantly fetch, create, or update GitHub data without leaving your terminal.
+- **Automation:** Integrate with scripts and CI/CD pipelines for advanced workflows.
+- **Security:** Manage your GitHub token securely with local `.env` storage.
+- **Extensible:** Clean codebase, easy to add new commands.
 
-## Requirements
-- Go 1.25 or higher
-- A valid GitHub personal access token (with appropriate scopes)
+## Key Features
+- List, create, and delete repositories
+- Get detailed repository information
+- List branches and commits (with SHA, author, message, date, etc.)
+- Create issues directly from the CLI
+- Fetch user info, followers, and following lists
+- Secure authentication flow
 
-## Installation
-Clone the repository and install dependencies:
+## Quickstart
+1. **Clone and install dependencies:**
+   ```sh
+   git clone https://github.com/alexnakagama/go-cli-fetcher.git
+   cd go-cli-fetcher
+   go mod download
+   ```
+2. **Authenticate:**
+   ```sh
+   go run cmd/main.go auth
+   ```
+   Enter your GitHub token when prompted. It will be stored in `.env`.
 
-```sh
-git clone https://github.com/alexnakagama/go-cli-fetcher.git
-cd go-cli-fetcher
-go mod download
-```
-
-## Usage
-
-### Authentication
-Before using the CLI, configure your GitHub token:
-
-```sh
-go run cmd/main.go auth
-```
-You will be prompted to enter your token. It will be saved in a `.env` file.
-
-### Repository Commands
-All repository operations are grouped under the `repo` command:
-
-- List repositories:
+## Usage Examples
+- **List your repositories:**
   ```sh
   go run cmd/main.go repo list
   ```
-- Get repository details:
+- **Get repository details:**
   ```sh
   go run cmd/main.go repo detail <owner> <repo>
   ```
-- Create a repository:
+- **Create a repository:**
   ```sh
   go run cmd/main.go repo create <owner> <repoName>
   ```
-- Delete a repository:
+- **Delete a repository:**
   ```sh
   go run cmd/main.go repo delete <owner> <repoName>
   ```
-- List branches:
+- **List branches:**
   ```sh
   go run cmd/main.go repo list-branches <owner> <repoName>
   ```
-- List commits:
+- **List commits:**
   ```sh
   go run cmd/main.go repo list-commits <owner> <repoName>
   ```
-
-### Example Output for Commits
-Each commit will show:
-- SHA
-- URL
-- Author (login)
-- Email
-- Message
-- Date
+- **Create an issue:**
+  ```sh
+  go run cmd/main.go issue create <owner> <repoName> "Title" "Body"
+  ```
+- **Show who a user is following:**
+  ```sh
+  go run cmd/main.go user following <username>
+  ```
 
 ## Environment Variables
 - `GITHUB_TOKEN`: Your GitHub personal access token. Set via the `auth` command or manually in a `.env` file.
 
-## Development
-- All commands are implemented using [Cobra](https://github.com/spf13/cobra).
-- The codebase is organized under `cmd/` for the entrypoint and `internal/` for command and API logic.
+## Project Structure
+- `cmd/` — CLI entrypoint
+- `internal/cmd/` — Command definitions
+- `internal/github/` — GitHub API logic
 
 ## Contributing
-Contributions are welcome. Please open issues or submit pull requests for improvements or bug fixes.
-
-## License
-This project is licensed under the MIT License.
+We welcome contributions! Open an issue or submit a pull request to add features, fix bugs, or improve documentation.
