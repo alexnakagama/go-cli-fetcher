@@ -74,6 +74,17 @@ var repoListCommitsCmd = &cobra.Command{
 	},
 }
 
+var repoSearchStarsCmd = &cobra.Command{
+	Use:   "stars [owner] [repoName]",
+	Short: "Search for stars in a user repository",
+	Args:  cobra.ExactArgs(2),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		owner := args[0]
+		repoName := args[1]
+		return github.SearchRepoStars(owner, repoName)
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(repoCmd)
 	repoCmd.AddCommand(repoListCmd)
