@@ -82,6 +82,16 @@ var userGetFollowingCmd = &cobra.Command{
 	},
 }
 
+var userGetFollowersCmd = &cobra.Command{
+	Use:   "followers [username]",
+	Short: "Fetch user followers",
+	Args:  cobra.ExactArgs(1),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		username := args[0]
+		return github.SearchUserFollowers(username)
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(userCmd)
 	userCmd.AddCommand(userGetInfoCmd)
