@@ -119,4 +119,5 @@ func init() {
 	repoCmd.AddCommand(repoListCommitsCmd)
 	repoCmd.AddCommand(repoSearchStarsCmd)
 	repoCmd.AddCommand(repoCreateIssue)
+	repoCmd.AddCommand(repoListIssue)
 }
