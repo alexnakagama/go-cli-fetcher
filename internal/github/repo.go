@@ -126,3 +126,19 @@ func CreateIssue(owner, repoName, title, body string) error {
 
 	return nil
 }
+
+func ListIssue(owner, repoName string) error {
+	client, err := createClient()
+
+	issues, _, err := client.Issues.ListByRepo(context.Background(), owner, repoName, nil)
+	if err != nil {
+		fmt.Printf("Error fetching issues: %v", err)
+	}
+
+	fmt.Printf("Issues:")
+	for _, issue := range issues {
+		fmt.Printf("%s: %s", *issue.Title, *issue.Body)
+	}
+
+	return nil
+}
